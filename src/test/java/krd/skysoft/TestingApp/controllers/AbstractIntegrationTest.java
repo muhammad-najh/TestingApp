@@ -17,13 +17,13 @@ public class AbstractIntegrationTest {
     @Autowired
     public WebTestClient webTestClient;
 
-    Employee testEmployee=Employee.builder()
+    public Employee testEmployee=Employee.builder()
             .id(1L)
                 .name("muhamad")
                 .email("muhamad@gmail.com")
                 .salary(100L)
                 .build();
-    EmployeeDto testEmployeeDto=EmployeeDto.builder()
+    public EmployeeDto testEmployeeDto=EmployeeDto.builder()
             .id(1L)
                 .name("muhamad")
                 .email("muhamad@gmail.com")

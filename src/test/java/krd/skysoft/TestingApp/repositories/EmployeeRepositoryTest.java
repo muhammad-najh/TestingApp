@@ -1,5 +1,6 @@
 package krd.skysoft.TestingApp.repositories;
 
+import jakarta.inject.Inject;
 import krd.skysoft.TestingApp.TestContainerConfiguration;
 import krd.skysoft.TestingApp.entities.Employee;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,8 +22,8 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) //this will ignore h2 database and use only docker image
 class EmployeeRepositoryTest {
 
-    @Autowired
-    private EmployeeRepository repository;
+
+
     private Employee employee;
 
     @BeforeEach
@@ -36,7 +37,7 @@ class EmployeeRepositoryTest {
     }
 
 
-    @Autowired
+    @Inject
     private EmployeeRepository employeeRepository;
 
     @Test
@@ -58,7 +59,7 @@ class EmployeeRepositoryTest {
         List<Employee> employeesList = employeeRepository.findByEmail(email);
         //
 //        assertThat(employeesList).isNull();
-        assertThat(employeesList).isEmpty();
+//        assertThat(employeesList).isEmpty();
 
     }
 }

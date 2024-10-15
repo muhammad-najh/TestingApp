@@ -1,19 +1,27 @@
 package krd.skysoft.TestingApp.controllers;
 
+import krd.skysoft.TestingApp.TestContainerConfiguration;
 import krd.skysoft.TestingApp.dto.EmployeeDto;
 import krd.skysoft.TestingApp.entities.Employee;
 import krd.skysoft.TestingApp.repositories.EmployeeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.web.reactive.server.WebTestClient;
 
-class EmployeeControllerTestIT extends AbstractIntegrationTest {
+
+
+class EmployeeControllerTestIT extends AbstractIntegrationTest{
 
     @Autowired
     private EmployeeRepository employeeRepository;
 
     @BeforeEach
     void setUp(){
+
         employeeRepository.deleteAll();
 
     }
@@ -66,6 +74,13 @@ class EmployeeControllerTestIT extends AbstractIntegrationTest {
 
     @Test
     void testCreateNewEmployee_whenEmployeeDoesNotExist_success(){
+//        EmployeeDto testEmployeeDto=EmployeeDto.builder()
+//                .id(1L)
+//                .name("muhamad")
+//                .email("muhamad@gmail.com")
+//                .salary(100L)
+//                .build();
+
         webTestClient.post()
                 .uri("/employees")
                 .bodyValue(testEmployeeDto)
@@ -98,7 +113,7 @@ class EmployeeControllerTestIT extends AbstractIntegrationTest {
     }
 
     @Test
-    void testUpdateEmployee_whenEmployeeIsValid_success(){
+    void doctestUpdateEmployee_whenEmployeeIsValid_success(){
         Employee savedEmployee=employeeRepository.save(testEmployee);
         testEmployeeDto.setName("random user");
 
